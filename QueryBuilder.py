@@ -125,39 +125,40 @@ class QueryInfo:
 
 
 # Usage example
-ConditionGroup1 = ConditionGroup(
-    conditions=[
-        ConditionInfo("Department", ConditionalOperator.IN, "IT,HR"),
-        ConditionInfo("Salary", ConditionalOperator.GREATER_THAN, "50000"),
-    ],
-    relationships=[
-        LogicalOperator.OR
-    ]
-)
+def main():
+    ConditionGroup1 = ConditionGroup(
+        conditions=[
+            ConditionInfo("Department", ConditionalOperator.IN, "IT,HR"),
+            ConditionInfo("Salary", ConditionalOperator.GREATER_THAN, "50000"),
+        ],
+        relationships=[
+            LogicalOperator.OR
+        ]
+    )
 
-ConditionGroup2 = ConditionGroup(
-    conditions=[
-        ConditionInfo("Account", ConditionalOperator.IN, "CSE,MBA"),
-        ConditionInfo("Value", ConditionalOperator.LESS_THAN_EQUAL_TO, "10"),
-        ConditionInfo("Money", ConditionalOperator.EQUAL, "90000")
-    ],
-    relationships=[
-        LogicalOperator.AND,
-        LogicalOperator.OR
-    ]
-)
+    ConditionGroup2 = ConditionGroup(
+        conditions=[
+            ConditionInfo("Account", ConditionalOperator.IN, "CSE,MBA"),
+            ConditionInfo("Value", ConditionalOperator.LESS_THAN_EQUAL_TO, "10"),
+            ConditionInfo("Money", ConditionalOperator.EQUAL, "90000")
+        ],
+        relationships=[
+            LogicalOperator.AND,
+            LogicalOperator.OR
+        ]
+    )
 
-ConditionTree = ConditionGroup(
-    conditions=[
-        ConditionGroup1,
-        ConditionGroup2,
-        ConditionInfo("IsActive", ConditionalOperator.EQUAL, "1")
-    ],
-    relationships=[
-        LogicalOperator.AND,
-        LogicalOperator.OR
-    ]
-)
+    ConditionTree = ConditionGroup(
+        conditions=[
+            ConditionGroup1,
+            ConditionGroup2,
+            ConditionInfo("IsActive", ConditionalOperator.EQUAL, "1")
+        ],
+        relationships=[
+            LogicalOperator.AND,
+            LogicalOperator.OR
+        ]
+    )
 
-query = QueryInfo("Employees", ConditionTree)
-print(query.BuildQuery())
+    query = QueryInfo("Employees", ConditionTree)
+    print(query.BuildQuery())
